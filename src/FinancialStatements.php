@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+ $username = $_SESSION['username'];
+// If session variable is not set it will redirect to login page
+if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+  header("location: login.php");
+  exit;
+}
+?>
 <!doctype html>
 <?php
 $config['db'] = array(
@@ -87,23 +97,79 @@ $queryCL->execute();
                   <li class="nav-item">
                     <a class="nav-link"href="./COA.php">Charts of Account</a>
                   </li>
-                  <li class="nav-item">
-                        <a class="nav-link" href="./JournalEntry.php">Journal Entry</a>
-                </li>
-                <li class="nav-item">
+                  <?php // to hide 'manager review' based on user type
+				$query1 = $db->query("SELECT * FROM users WHERE username = '$username'");  // grab user_type of matching username
+				while($row = $query1->fetch(PDO::FETCH_ASSOC)){
+					$userType = $row['user_type'];
+				}
+				/* if the username is equal to Regular, do not show the manager review link*/
+				if($userType != 'Administrator'){ 
+				echo ' <li class="nav-item">
+                         <a class="nav-link" href="./JournalEntry.php">Journal Entry</a>
+                </li>';	
+				}
+				?>
+				
+				<?php // to hide 'manager review' based on user type
+				$query1 = $db->query("SELECT * FROM users WHERE username = '$username'");  // grab user_type of matching username
+				while($row = $query1->fetch(PDO::FETCH_ASSOC)){
+					$userType = $row['user_type'];
+				}
+				/* if the username is equal to Regular, do not show the manager review link*/
+				if($userType == 'Manger'){ 
+				echo ' <li class="nav-item">
                          <a class="nav-link" href="./ManagerReview.php">Manager Review</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./ledgerAccounts.php">Account Ledgers</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./accounts.php">Accounts</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link" href="./FinancialStatements.php">Financial Statements</a>
-                </li>
-                  <li class="nav-item">
-                  <a class="nav-link" href="./logs.php">Logs</a>
+                </li>';	
+				}
+				?>
+                  <?php // to hide 'manager review' based on user type
+				$query1 = $db->query("SELECT * FROM users WHERE username = '$username'");  // grab user_type of matching username
+				while($row = $query1->fetch(PDO::FETCH_ASSOC)){
+					$userType = $row['user_type'];
+				}
+				/* if the username is equal to Regular, do not show the manager review link*/
+				if($userType != 'Administrator'){ 
+				echo ' <li class="nav-item">
+                         <a class="nav-link" href="./ledgerAccounts.php">Accounts Ledgers</a>
+                </li>';	
+				}
+				?>
+                  <?php // to hide 'manager review' based on user type
+				$query1 = $db->query("SELECT * FROM users WHERE username = '$username'");  // grab user_type of matching username
+				while($row = $query1->fetch(PDO::FETCH_ASSOC)){
+					$userType = $row['user_type'];
+				}
+				/* if the username is equal to Regular, do not show the manager review link*/
+				if($userType != 'Administrator'){ 
+				echo ' <li class="nav-item">
+                         <a class="nav-link" href="./accounts.php">Accounts</a>
+                </li>';	
+				}
+				?>
+                  <?php // to hide 'manager review' based on user type
+				$query1 = $db->query("SELECT * FROM users WHERE username = '$username'");  // grab user_type of matching username
+				while($row = $query1->fetch(PDO::FETCH_ASSOC)){
+					$userType = $row['user_type'];
+				}
+				/* if the username is equal to Regular, do not show the manager review link*/
+				if($userType != 'Administrator'){ 
+				echo ' <li class="nav-item">
+                         <a class="nav-link" href="./FinancialStatements.php">Financial Statements</a>
+                </li>';	
+				}
+				?>
+                  <?php // to hide 'manager review' based on user type
+				$query1 = $db->query("SELECT * FROM users WHERE username = '$username'");  // grab user_type of matching username
+				while($row = $query1->fetch(PDO::FETCH_ASSOC)){
+					$userType = $row['user_type'];
+				}
+				/* if the username is equal to Regular, do not show the manager review link*/
+				if($userType != 'Administrator'){ 
+				echo ' <li class="nav-item">
+                         <a class="nav-link" href="./logs.php">logs</a>
+                </li>';	
+				}
+				?>
                 </li>
       
                 </ul>
@@ -112,7 +178,7 @@ $queryCL->execute();
               <div class="pull-right">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="navbarDropdown" href="./login.php"><span class="glyphicon glyphicon-user"></span>Login</a>
+                  <a class="dropdown-toggle" data-toggle="navbarDropdown" href="./logout.php"><span class="glyphicon glyphicon-user"></span><?php echo htmlspecialchars($_SESSION['username']); ?></a>
                   </li>
                 </ul>
               </div>
@@ -129,15 +195,15 @@ $queryCL->execute();
         </div>
         <div id = "trial-balance-sheet" class="show">
         <div class="table-title">
-          <h4>Anywhere Accounting Company </h4>
+          <h4>Addams and Family Inc.</h4>
             <h4>Trial Balance</h4>
             <h4>As of <span class = "date"></span></h4>
         </div>
             <table class="table">
               <tr class = 'table-header-row'>
                 <td>ACCOUNT NAME</td>
-                <td>DEBIT</td>
-                <td>CREDIT</td>
+                <td align="right">DEBIT</td>
+                <td align="right">CREDIT</td>
               </tr>
             <?php
                while($tbRow = $queryLeft->fetch(PDO::FETCH_ASSOC)){
@@ -164,7 +230,7 @@ $queryCL->execute();
         </div>
         <div id = "income-statement-sheet" class ="hide">
           <div class="table-title">
-            <h4>Anywhere Accounting Company</h4>
+            <h4>Addams and Family Inc.</h4>
             <h4>Income Statement</h4>
             <h4>As of <div class = "date"></div></h4>
           </div>
@@ -222,15 +288,15 @@ $queryCL->execute();
         </div>
         <div id = "balance-sheet-sheet" class="hide">
           <div class ="table-title">
-            <h4>Anywhere Accounting Company </h4>
+            <h4>Addams and Family Inc.</h4>
             <h4>Balance Sheet</h4>
             <h4>As of <div class = "date"></div></h4>
               </div>
               <table class ="table">
                 <tr class = 'table-header-row'>
                  <td>NAME</td>
-                 <td>DEBITS</td>
-                 <td>CREDITS</td>
+                 <td align="right">ACCOUNT TOTALS</td>
+                 <td align="right">SUBTOTALS</td>
                 </tr>
                 <tr>
                   <td><strong> ASSETS</strong></td><td></td><td></td>
@@ -281,6 +347,11 @@ $queryCL->execute();
                   echo "<td align='right' class='OE'>",$OERow['balance'],"</td><td></td></tr>";
                   }
                  ?>
+                 <tr>
+                  <td>Retained Earnings</td>
+                  <td align ="right" id ="retained-earnings-value"></td>
+                  <td></td>
+                 </tr>
                 <tr>
                   <td><strong>Long Term Liabilities</strong></td>
                   <td></td>
@@ -315,7 +386,7 @@ $queryCL->execute();
         </div>
         <div id = "retained-earnings-sheet" class="hide">
           <div class = "table-title">
-            <h4>Anywhere Accounting Company </h4>
+            <h4>Addams and Family Inc.</h4>
             <h4>Statement of Retained Earnings</h4>
             <h4>As of <div class = "date"></div></h4>
           </div>
