@@ -4,7 +4,7 @@ session_start();
 $username = $_SESSION['username'];// grab the session username
 // If session variable is not set it will redirect to login page
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
+  //header("location: login.php");
   exit;
   
 
