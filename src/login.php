@@ -2,7 +2,7 @@
 // Include config file
 // PHP Data Objects(PDO) Sample Code:
 try {
-    $conn = new PDO("sqlsrv:server = tcp:accountingserver.database.windows.net,1433; Database = accounting2", "asuser1", "Anywhere_123");
+    $conn = new PDO("sqlsrv:server = accountinganywhere-mysqldbserver.mysql.database.azure.com; Database = accounting", "mysqldbuser@accountinganywhere-mysqldbserver", "Password_1");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
