@@ -1,7 +1,7 @@
 <?php
 // Include config file
 // PHP Data Objects(PDO) Sample Code:
-//include("connect.php");
+include("connect.php");
 
  
 // Define variables and initialize with empty values

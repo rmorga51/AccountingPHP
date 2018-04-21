@@ -1,21 +1,9 @@
 <?php
 // Include config file
 // PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = accountinganywhere-mysqldbserver.mysql.database.azure.com; Database = accounting", "mysqldbuser@accountinganywhere-mysqldbserver", "Password_1");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "mysqldbuser@accountinganywhere-mysqldbserver", "pwd" => "Password_1", "Database" => "accounting", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "accountinganywhere-mysqldbserver.mysql.database.azure.com";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
 
- //include("connect.php");
+ include("connect.php");
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
