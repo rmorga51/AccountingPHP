@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
             
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <
+                
                 
               </div>
               <div class="pull-right">
