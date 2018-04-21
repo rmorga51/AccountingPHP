@@ -1,10 +1,10 @@
 <?php
 // Include config file
 $config['db'] = array(
-	'host'			=>'localhost',
-	'username'		=>'rmorga51',
-	'password'		=>'',
-	'dbname'		=>'accounting'
+	'host'			=>'tcp:accountingserver.database.windows.net,1433',
+	'username'		=>'asuser1',
+	'password'		=>'Anywhere_123',
+	'dbname'		=>'accounting2'
 );
 	//change dbname back to 'accounting' before committing
 
