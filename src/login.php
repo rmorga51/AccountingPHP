@@ -15,7 +15,7 @@ $connectionInfo = array("UID" => "asuser1@accountingserver", "pwd" => "Anywhere_
 $serverName = "tcp:accountingserver.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 */
- include("connect.php");
+ //include("connect.php");
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
