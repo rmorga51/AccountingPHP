@@ -1,17 +1,19 @@
 <?php
 // Include config file
-$config['db'] = array(
-	'host'			=>'localhost',
-	'username'		=>'rmorga51',
-	'password'		=>'',
-	'dbname'		=>'accounting'
-);
-// set dbname to accounting before commit	
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:accountingserver.database.windows.net,1433; Database = accounting2", "asuser1", "Anywhere_123");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 
-$db = new PDO('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbname'], $config['db']['username'], $config['db']['password']); 
-$db->setATTRIBUTE(PDO::ATTR_EMULATE_PREPARES, false);
-$db->setATTRIBUTE(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//require_once 'config.php';
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "asuser1@accountingserver", "pwd" => "Anywhere_123", "Database" => "accounting2", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:accountingserver.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
  
 // Define variables and initialize with empty values
