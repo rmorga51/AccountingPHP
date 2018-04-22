@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, user_type) VALUES (:username, :password, :user_type )";
+        $sql = "INSERT INTO users (username, password, user_type) VALUES (username, password, user_type )";
          
         if($stmt = $conn->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -137,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<option value="Manger">Manager</option>
 				<option value="Administrator">Administrator</option>
 				</select>
-                <span class="help-block"><?php echo $username_err; ?></span>
+                <span class="help-block"><?php echo '$username_err'; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
