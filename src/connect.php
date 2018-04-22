@@ -3,6 +3,7 @@
 try {
     $conn = new PDO("sqlsrv:server = tcp:anywhereaccounting1server.database.windows.net,1433; Database = accounting", "rmorga51", "Password_1");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo 'connected to database successful :)';
 }
 catch (PDOException $e) {
     print("Error connecting to SQL Server.");
