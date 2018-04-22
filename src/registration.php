@@ -14,7 +14,7 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-
+mysqli_select_db($conn, "accounting");
 
 
 echo 'we made it fam';
