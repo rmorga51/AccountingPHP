@@ -44,31 +44,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_username = trim($_POST["username"]);
-            
+            echo 'preparing to jump...';
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                echo 'made it 1';
+                echo 'jump successful. Proceed'
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
-                    echo 'made it 2';
                     if($row = $stmt->fetch()){
-                        echo 'made it 3';
                         $hashed_password = $row['password'];
                         if(password_verify($password, $hashed_password)){
-                            echo 'made it 4';
                             /* Password is correct, so start a new session and
                             save the username to the session */
                             session_start();
                             $_SESSION['username'] = $username;      
                             header("location: home.php");
                         } else{
-                            echo 'made it 5';
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
                         }
                     }
                 } else{
-                    echo 'made it 6';
                     // Display an error message if username doesn't exist
                     $username_err = 'No account found with that username.';
                 }
