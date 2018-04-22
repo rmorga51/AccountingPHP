@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 			
-            
+            echo 'made it here';
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to login page
