@@ -44,16 +44,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_username = trim($_POST["username"]);
-            try{
+        try{
+            $stmt->execute();
+        }catch(PDOException $e){
+                echo $e->getMessage(); // display error
+                exit();
+            }
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
+            /*if($stmt->execute()){
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $hashed_password = $row['password'];
                         if(password_verify($password, $hashed_password)){
                             /* Password is correct, so start a new session and
-                            save the username to the session */
+                            save the username to the session 
                             session_start();
                             $_SESSION['username'] = $username;      
                             header("location: home.php");
@@ -66,12 +71,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Display an error message if username doesn't exist
                     $username_err = 'No account found with that username.';
                 }
-            }}catch(PDOException $e){
-                echo $e->getMessage(); // display error
-                exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
-            }
+            }*/
         }
         
         // Close statement
