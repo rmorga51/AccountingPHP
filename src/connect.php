@@ -14,6 +14,6 @@ catch (PDOException $e) {
 $connectionInfo = array("UID" => "rmorga51@anywhereaccounting1server", "pwd" => "Password_1", "Database" => "accounting", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:anywhereaccounting1server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+echo 'Connection Info: ' . $connectionInfo;
 ?>
 
