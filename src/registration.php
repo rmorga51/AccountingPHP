@@ -3,6 +3,7 @@
 // PHP Data Objects(PDO) Sample Code:
 
 // PHP Data Objects(PDO) Sample Code:
+echo 'it started at least';
 try {
     $conn = new PDO("sqlsrv:server = tcp:anywhereaccounting1server.database.windows.net,1433; Database = accounting", "rmorga51", "Password_1");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +19,7 @@ $serverName = "tcp:anywhereaccounting1server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
-
+echo 'we made it fam';
 
 
  
