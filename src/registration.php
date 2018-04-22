@@ -89,6 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 			
             echo 'made it here';
+            try{
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to login page
@@ -96,6 +97,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 header("location: login.php");
             } else{
                 echo "Something went wrong. Please try again later.";
+            }
+            }catch(PDOException $e){
+                echo $e->getMessage(); // display error
+                exit();
             }
         }
          
