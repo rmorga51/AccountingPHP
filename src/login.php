@@ -66,12 +66,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Display an error message if username doesn't exist
                     $username_err = 'No account found with that username.';
                 }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-                }catch(PDOException $e){
+            }}catch(PDOException $e){
                 echo $e->getMessage(); // display error
                 exit();
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
             }
         }
         
