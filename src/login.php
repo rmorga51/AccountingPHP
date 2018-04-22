@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_username = trim($_POST["username"]);
-            
+            try{
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Check if username exists, if yes then verify password
@@ -68,6 +68,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
+            }
+                }catch(PDOException $e){
+                echo $e->getMessage(); // display error
+                exit();
             }
         }
         
