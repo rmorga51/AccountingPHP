@@ -18,6 +18,21 @@ mysqli_select_db($conn, "accounting");
 
 
 echo 'we made it fam';
+$query = $db->prepare("SELECT * FROM chart_of_accounts WHERE account_status != 'n/a' ORDER BY $order ASC");
+
+			while($row = $query->fetch(PDO::FETCH_ASSOC)){
+				echo "<tr>";
+				echo "<td>",$row['account_code'],"</td>";
+				echo "<td>",$row['account_type'],"</td>";
+				echo "<td>",$row['account_subtype'],"</td>";
+				echo "<td>",$row['account_name'],"</td>";
+				echo "<td>",$row['normal_side'],"</td>";
+				echo "<td>",$row['account_status'],"</td>";
+				echo "<td class='balance'>",$row['balance'],"</td>";
+				echo "<td>",$row['last_date_accessed'],"</td>";
+				echo "<td>",$row['last_user_id_accessed'],"</td>";
+				echo "</tr>";
+			}
 
 
  
@@ -135,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<option value="Manger">Manager</option>
 				<option value="Administrator">Administrator</option>
 				</select>
-                <span class="help-block"><?php echo '$username_err'; ?></span>
+                <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
