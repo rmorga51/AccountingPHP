@@ -1,11 +1,18 @@
 <?php 
-$con=mysqli_init(); mysqli_ssl_set($con, NULL, NULL, {ca-cert filename}, NULL, NULL); mysqli_real_connect($con, "accountinganywhere-mysqldbserver.mysql.database.azure.com", "mysqldbuser@accountinganywhere-mysqldbserver", "Password_1", "accounting", 3306);
-if (con->connect_errno) {
-    die('Connect Error: ' . $mysqli->connect_errno);
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:anywhereaccounting1server.database.windows.net,1433; Database = anywhereaccounting1DB", "rmorga51", "Password_1");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
-else{
-   echo 'Try harder man'; 
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
 }
-//echo $mysqli->host_info . "\n";
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "rmorga51@anywhereaccounting1server", "pwd" => "Password_1", "Database" => "anywhereaccounting1DB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:anywhereaccounting1server.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+
 ?>
 
