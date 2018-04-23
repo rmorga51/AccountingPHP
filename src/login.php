@@ -52,14 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo 'preparing to jump...';
             // Attempt to execute the prepared statement
             try{
-                $stmt->execute();
-            }
-            catch(PDOException $e) {
-   echo $e->getMessage(); // display error
-                exit();
-}
+            
             if($stmt->execute()){
-                           $rows = $stmt->fetchAll();
+            $rows = $stmt->fetchAll();
             $rowCount = count($rows);
             echo 'the var rowCOunt is ' . $rowCount;
                 echo 'jump successful. Proceed';//<--------------------------------------
@@ -91,6 +86,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
+            }
+            catchcatch(PDOException $e) {
+   echo $e->getMessage(); // display error
+                exit();
+}
         }
         
         // Close statement
