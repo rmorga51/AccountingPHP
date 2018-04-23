@@ -65,10 +65,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo 'jump successful. Proceed';
                     echo 'preparing for jump 3...';
                     echo '$row equals ' . $row;
-                                                session_start();
-                            $_SESSION['username'] = $username;    
+                     //session_start();
+                    //$_SESSION['username'] = $username;    
                     echo 'session started';
-                            header("location: home.php");
+                    header("location: home.php");
                     /*if($row = $stmt->fetch()){
                         echo 'jump successful. Proceed';
                         $hashed_password = $row['password'];
