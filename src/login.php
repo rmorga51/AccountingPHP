@@ -62,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($rowCount == 1){
                     echo 'jump successful. Proceed';
                     echo 'preparing for jump 3...';
+                    echo '$row equals ' . $row;
                     if($row = $stmt->fetch()){
                         echo 'jump successful. Proceed';
                         $hashed_password = $row['password'];
