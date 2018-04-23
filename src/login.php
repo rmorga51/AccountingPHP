@@ -37,6 +37,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
         $sql = "SELECT username, password FROM users WHERE username = :username";
+        $rows = $sql->fetchAll();
+        $rowCount = count($rows);
+        echo 'the var rowCOunt is ' . $rowCount;
         
         if($stmt = $conn->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -51,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                  echo 'preparing for jump 2...';
                 echo 'rowcount equals ' . $stmt->rowCount();
                 // Check if username exists, if yes then verify password
-                if($stmt->rowCount() == 1){
+                if($rowCount == 1){
                     echo 'jump successful. Proceed';
                     echo 'preparing for jump 3...';
                     if($row = $stmt->fetch()){
