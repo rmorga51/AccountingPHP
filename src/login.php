@@ -49,6 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 echo 'jump successful. Proceed';//<--------------------------------------
                  echo 'preparing for jump 2...';
+                echo 'rowcount equals ' . $stmt->rowCount();
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
                     echo 'jump successful. Proceed';
