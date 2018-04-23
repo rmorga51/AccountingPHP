@@ -37,11 +37,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
         $sql = "SELECT username, password FROM users WHERE username = :username";
-        $rows = $sql->fetchAll();
-        $rowCount = count($rows);
-        echo 'the var rowCOunt is ' . $rowCount;
+
+        
         
         if($stmt = $conn->prepare($sql)){
+            $rows = $stmt->fetchAll();
+            $rowCount = count($rows);
+            echo 'the var rowCOunt is ' . $rowCount;
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(':username', $param_username, PDO::PARAM_STR);
             
