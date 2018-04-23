@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Something went wrong. Please try again later.";
             }
             }
-            catchcatch(PDOException $e) {
+            catch(PDOException $e) {
    echo $e->getMessage(); // display error
                 exit();
 }
