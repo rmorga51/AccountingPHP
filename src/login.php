@@ -52,6 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo 'preparing to jump...';
             // Attempt to execute the prepared statement
             if($stmt->execute()){
+                           $rows = $stmt->fetchAll();
+            $rowCount = count($rows);
+            echo 'the var rowCOunt is ' . $rowCount;
                 echo 'jump successful. Proceed';//<--------------------------------------
                  echo 'preparing for jump 2...';
                 //echo 'rowcount equals ' . $stmt->rowCount();
