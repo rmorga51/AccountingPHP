@@ -47,10 +47,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo 'preparing to jump...';
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                echo 'jump successful. Proceed';
+                echo 'jump successful. Proceed';//<--------------------------------------
+                 echo 'preparing for jump 2...';
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
+                    echo 'jump successful. Proceed';
+                    echo 'preparing for jump 3...';
                     if($row = $stmt->fetch()){
+                        echo 'jump successful. Proceed';
                         $hashed_password = $row['password'];
                         if(password_verify($password, $hashed_password)){
                             /* Password is correct, so start a new session and
