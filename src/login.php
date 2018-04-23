@@ -65,12 +65,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo 'jump successful. Proceed';
                     echo 'preparing for jump 3...';
                     echo '$row equals ' . $row;
-                    if($row = $stmt->fetchAll()){
+                    /*if($row = $stmt->fetch()){
                         echo 'jump successful. Proceed';
                         $hashed_password = $row['password'];
                         if(password_verify($password, $hashed_password)){
                             /* Password is correct, so start a new session and
-                            save the username to the session */
+                            save the username to the session 
                             session_start();
                             $_SESSION['username'] = $username;      
                             header("location: home.php");
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
                         }
-                    }
+                    }*/
                 } else{
                     // Display an error message if username doesn't exist
                     $username_err = 'No account found with that username.';
