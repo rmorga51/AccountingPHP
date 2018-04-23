@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo 'preparing to jump...';
             // Attempt to execute the prepared statement
             try{
-                $stmt->execure();
+                $stmt->execute();
             }
             catch(PDOException $e) {
     print("Error connecting to SQL Server.");
