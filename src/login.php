@@ -55,8 +55,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $stmt->execute();
             }
             catch(PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+   echo $e->getMessage(); // display error
+                exit();
 }
             if($stmt->execute()){
                            $rows = $stmt->fetchAll();
