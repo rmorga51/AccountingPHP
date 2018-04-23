@@ -51,6 +51,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_username = trim($_POST["username"]);
             echo 'preparing to jump...';
             // Attempt to execute the prepared statement
+            try{
+                $stmt->execure();
+            }
+            catch(PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
             if($stmt->execute()){
                            $rows = $stmt->fetchAll();
             $rowCount = count($rows);
